@@ -6,12 +6,14 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
-class Student extends Model
+class _Parent extends Model
 {
     use HasFactory, FilterQueryString;
 
+    protected $table = 'parents';
     protected $guarded = ['id'];
     protected $filters = ['search', 'sort'];
 
@@ -19,18 +21,12 @@ class Student extends Model
     {
         return $query
             ->where('name', 'LIKE', "%$value%")
-            ->orWhere('nis', 'LIKE', "%$value%")
-            ->orWhere('nisn', 'LIKE', "%$value%")
-            ->orWhere('email', 'LIKE', "%$value%");
+            ->orWhere('alamat', 'LIKE', "%$value%")
+            ->orWhere('phone', 'LIKE', "%$value%");
     }
 
-    public function class(): BelongsTo
+    public function student(): HasOne
     {
-        return $this->belongsTo(Class_::class);
-    }
-
-    public function parent(): BelongsTo
-    {
-        return $this->belongsTo(_Parent::class, 'parent_id', 'id');
+        return $this->hasOne(Student::class, 'parent_id', 'id');
     }
 }

@@ -3,8 +3,8 @@
 @section('content')
 <div class="col">
     <div class="d-flex align-items-center justify-content-between mb-4">
-        <div>
-            <div class="dropdown">
+        <div class="d-flex align-items-center">
+            <div class="dropdown me-2">
                 <a class="btn btn-sm border p-2 dropdown-toggle dropdown-without-icon" href="#"
                     data-bs-toggle="dropdown" aria-expanded="false">
                     <i data-feather="more-vertical"></i>
@@ -34,6 +34,12 @@
                             Download PDF Data Guru</a>
                     </li>
                 </ul>
+            </div>
+            <div>
+                <a href="{{ route('students.create') }}" class="btn btn-primary fw-bold">
+                    <span data-feather="plus-circle" class="me-1 icon-size"></span>
+                    Tambah
+                </a>
             </div>
         </div>
         <div>

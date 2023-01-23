@@ -14,7 +14,8 @@
         rel="stylesheet">
 
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-5.3.0-alpha/css/bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('vendors/flatpickr/flatpickr.min.js') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('vendors/tom-select/tom-select.bootstrap5.min.css') }}">
 
     <style>
         * {
@@ -35,6 +36,7 @@
 
     <script src="{{ asset('vendors/bootstrap-5.3.0-alpha/js/bootstrap.bundle.min.js') }}"></script>
     <script src="{{ asset('vendors/flatpickr/flatpickr.js') }}"></script>
+    <script src="{{ asset('vendors/tom-select/tom-select.base.js') }}"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">

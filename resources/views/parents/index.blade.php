@@ -11,10 +11,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-dark">
                     <li>
-                        <h6 class="dropdown-header">Import Data Siswa</h6>
+                        <h6 class="dropdown-header">Import Data Orang Tua</h6>
                     </li>
                     <li>
-                        <form action="{{ route('students.template') }}" method="post">
+                        <form action="{{ route('parents.template') }}" method="post">
                             @csrf
                             <button class="dropdown-item" type="submit">
                                 <i data-feather="download" class="me-2 icon-size"></i>
@@ -26,12 +26,7 @@
                         <a class="dropdown-item" href="#" data-bs-toggle="modal"
                             data-bs-target="#importStudentExcelModal">
                             <i data-feather="upload" class="me-2 icon-size"></i>
-                            Import Data Siswa (.xlsx)</a>
-                    </li>
-                    <li>
-                        <a class="dropdown-item" href="#">
-                            <i data-feather="file-text" class="me-2 icon-size"></i>
-                            Download PDF Data Siswa</a>
+                            Import Data Orang Tua (.xlsx)</a>
                     </li>
                 </ul>
             </div>
@@ -42,7 +37,7 @@
             </button>
         </div>
         <div>
-            <a href="{{ route('students.create') }}" class="btn btn-primary fw-bold">
+            <a href="{{ route('parents.create') }}" class="btn btn-primary fw-bold">
                 <span data-feather="plus-circle" class="me-1 icon-size"></span>
                 Tambah
             </a>
@@ -55,15 +50,13 @@
         <x-forms.filters :sortItems="[
             'created_at' => 'Ditambahkan pada',
             'name' => 'Nama Lengkap',
-            'nis' => 'NIS',
-            'nisn' => 'NISN',
-            'email' => 'Email',
+            'phone' => 'No. HP',
         ]" />
     </div>
 
     <div class="card shadow-lg">
         <div class="card-header">
-            Data Siswa
+            Data Orang Tua
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -76,66 +69,50 @@
                                 </div>
                             </th> --}}
                             <th scope="col" class="text-center">#</th>
-                            <th scope="col">NIS / NISN</th>
                             <th scope="col">Nama Lengkap</th>
-                            <th scope="col">Kelas</th>
-                            <th scope="col">Orang Tua</th>
-                            <th scope="col">Email</th>
+                            <th scope="col">Siswa / Anak</th>
+                            <th scope="col">Alamat</th>
+                            <th scope="col">No. HP</th>
                             <th scope="col">Jenis Kelamin</th>
                             <th scope="col">Ditambahkan pada</th>
                             <th scope="col">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($students->isEmpty())
+                        @if ($parents->isEmpty())
                         <tr class="no-whitespace">
                             <td colspan="8" class="text-center">
                                 <span class="d-block text-danger fw-bold py-3">Data tidak ada!</span>
                             </td>
                         </tr>
                         @endif
-                        @foreach ($students as $student)
+                        @foreach ($parents as $parent)
                         <tr class="no-whitespace">
-                            {{-- <th>
-                                <div class="form-check d-flex align-items-center justify-content-center m-0">
-                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                </div>
-                            </th> --}}
-                            <th scope="row" class="text-center">{{ ($students->currentpage()-1) *
-                                $students->perpage() +
+                            <th scope="row" class="text-center">{{ ($parents->currentpage()-1) *
+                                $parents->perpage() +
                                 $loop->index + 1
                                 }}</th>
-                            <td>{{ $student->nis }} <span style="font-weight: 900;">/</span> {{
-                                $student->nisn }}
-                            </td>
-                            <td>{{ $student->name }}</td>
+                            <td>{{ $parent->name }}</td>
                             <td>
-                                @if ($student?->class)
-                                <a href="{{ route('classes.show', $student->class->id) }}"
-                                    class="badge text-bg-primary">{{ $student->class->name }}</a>
+                                @if ($parent?->student)
+                                <a href="{{ route('students.show', $parent->student->id) }}"
+                                    class="badge text-bg-primary">{{ $parent->student->name }}</a>
                                 @endif
                             </td>
+                            <td>{!! nl2br($parent->alamat) !!}</td>
+                            <td>{{ $parent->phone }}</td>
                             <td>
-                                @if ($student?->parent)
-                                <a href="{{ route('parents.show', $student->parent->id) }}"
-                                    class="badge text-bg-primary">{{ $student->parent->name }}</a>
-                                @endif
-                            </td>
-                            <td>
-                                <a href="mailto:{{ $student->email }}">{{ $student->email }}</a>
-                            </td>
-                            <td>
-                                <div class="badge text-bg-primary">{{ $student->gender === 'l' ? 'Laki-Laki' :
+                                <div class="badge text-bg-primary">{{ $parent->gender === 'l' ? 'Laki-Laki' :
                                     "Perempuan"
                                     }}</div>
                             </td>
                             <td>
-                                {{ $student->created_at->format('d F Y H:i') }}
+                                {{ $parent->created_at->format('d F Y H:i') }}
                             </td>
                             <td>
-                                <a href="{{ route('students.show', $student) }}" class="badge text-bg-info">detail</a>
-                                <a href="{{ route('students.edit', $student) }}" class="badge text-bg-primary">edit</a>
-                                <form action="{{ route('students.destroy', $student) }}" class="d-inline-block"
+                                <a href="{{ route('parents.show', $parent) }}" class="badge text-bg-info">detail</a>
+                                <a href="{{ route('parents.edit', $parent) }}" class="badge text-bg-primary">edit</a>
+                                <form action="{{ route('parents.destroy', $parent) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
@@ -151,7 +128,7 @@
 
             <hr>
 
-            {{ $students->onEachSide(1)->links() }}
+            {{ $parents->onEachSide(1)->links() }}
         </div>
     </div>
 </div>
@@ -161,10 +138,10 @@
     aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('parents.import') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="modal-header">
-                    <h1 class="modal-title fs-5" id="importStudentExcelModalLabel">Import Data Siswa</h1>
+                    <h1 class="modal-title fs-5" id="importStudentExcelModalLabel">Import Data Orang Tua</h1>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

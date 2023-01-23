@@ -1,7 +1,9 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
@@ -35,6 +37,22 @@ Route::middleware('auth')->group(function () {
         ->name('teachers.template');
     Route::post('/teachers/import', [TeacherController::class, 'importTemplateExcel'])
         ->name('teachers.import');
+
+    Route::resource('/classes', ClassController::class);
+    Route::post('/classes/template', [ClassController::class, 'downloadTemplateExcel'])
+        ->name('classes.template');
+    Route::post('/classes/import', [ClassController::class, 'importTemplateExcel'])
+        ->name('classes.import');
+    Route::post('/classes/pindah-kelas', [ClassController::class, 'pindahKelasSiswa'])
+        ->name('classes.pindah-kelas');
+
+
+    Route::resource('/parents', ParentController::class);
+    Route::post('/parents/template', [ParentController::class, 'downloadTemplateExcel'])
+        ->name('parents.template');
+    Route::post('/parents/import', [ParentController::class, 'importTemplateExcel'])
+        ->name('parents.import');
+
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });

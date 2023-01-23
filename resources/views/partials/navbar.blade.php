@@ -6,11 +6,21 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Data Utama</a>
         <ul class="dropdown-menu dropdown-menu-dark">
-            <li><a class="dropdown-item {{ request()->routeIs('students.*') ? 'active fw-bold' : '' }}"
-                    href="{{ route('students.index') }}">Data Siswa</a></li>
+            <li>
+                <a class="dropdown-item {{ request()->routeIs('parents.*') ? 'active fw-bold' : '' }}"
+                    href="{{ route('parents.index') }}">Data Orang Tua</a>
+            </li>
+            <li>
+                <a class="dropdown-item {{ request()->routeIs('students.*') ? 'active fw-bold' : '' }}"
+                    href="{{ route('students.index') }}">Data Siswa</a>
+            </li>
             <li>
                 <a class="dropdown-item {{ request()->routeIs('teachers.*') ? 'active fw-bold' : '' }}"
                     href="{{ route('teachers.index') }}">Data Guru</a>
+            </li>
+            <li>
+                <a class="dropdown-item {{ request()->routeIs('classes.*') ? 'active fw-bold' : '' }}"
+                    href="{{ route('classes.index') }}">Data Kelas</a>
             </li>
         </ul>
     </li>

@@ -27,6 +27,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::query()
+            ->with(['class', 'parent'])
             ->filter()
             ->latest()
             ->paginate()
@@ -81,6 +82,7 @@ class StudentController extends Controller
      */
     public function show(Student $student)
     {
+        $student->load(['class', 'parent']);
         return view('students.show', [
             'title' => 'Detail Data Siswa',
             'student' => $student

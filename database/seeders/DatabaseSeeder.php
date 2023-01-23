@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
+use App\Models\_Parent;
 use App\Models\Class_;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -34,14 +35,18 @@ class DatabaseSeeder extends Seeder
             'role' => 'superadmin'
         ]);
 
-        Student::factory(200)->create();
-
-        Teacher::factory(40)
+        Teacher::factory(50)
             ->create()
             ->each(function (Teacher $teacher) {
                 Class_::factory(1)->create([
                     'wali_kelas_id' => $teacher->id
-                ]);
+                ])->each(function (Class_ $class) {
+                    $parent = _Parent::factory(1)->create()->first();
+                    Student::factory(40)->create([
+                        'class_id' => $class->id,
+                        'parent_id' => $parent->id
+                    ]);
+                });
             });
     }
 }
