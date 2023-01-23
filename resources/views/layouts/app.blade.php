@@ -14,9 +14,6 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             @include('partials.navbar')
-            <div class="text-center text-lg-start py-3 py-lg-0">
-                <small class="fw-bold text-white">Muhammad Pauzi</small>
-            </div>
         </div>
     </div>
 </nav>

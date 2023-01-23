@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\TeacherController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,6 +29,12 @@ Route::middleware('auth')->group(function () {
         ->name('students.template');
     Route::post('/students/import', [StudentController::class, 'importTemplateExcel'])
         ->name('students.import');
+
+    Route::resource('/teachers', TeacherController::class);
+    Route::post('/teachers/template', [TeacherController::class, 'downloadTemplateExcel'])
+        ->name('teachers.template');
+    Route::post('/teachers/import', [TeacherController::class, 'importTemplateExcel'])
+        ->name('teachers.import');
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });
