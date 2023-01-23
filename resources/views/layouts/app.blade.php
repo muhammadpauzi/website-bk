@@ -15,7 +15,12 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 mt-3 mt-lg-0">
                 <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+                    <a class="nav-link {{ request()->routeIs('dashboard.index') ? 'active fw-bold' :'' }}"
+                        aria-current="page" href="{{ route('dashboard.index') }}">Dashboard</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link {{ request()->routeIs('students.*') ? 'active fw-bold' : '' }}"
+                        aria-current="page" href="{{ route('students.index') }}">Data Siswa</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Notifications</a>

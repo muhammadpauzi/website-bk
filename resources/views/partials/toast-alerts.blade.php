@@ -4,15 +4,17 @@
         <div class="toast align-items-center text-bg-success border-0 p-1 shadow-lg show" role="alert"
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
-                <div class="toast-body">
-                    <div class="d-flex align-items-center mb-2">
-                        <span data-feather="check-circle" class="align-text-middle me-2"></span>
-                        <span class="fw-bold">Berhasil</span>
+                <div class="toast-body w-100">
+                    <div class="d-flex align-items-center mb-2 justify-content-between">
+                        <div>
+                            <span data-feather="check-circle" class="align-text-middle me-2 icon-size"></span>
+                            <span class="fw-bold">Berhasil</span>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
                     </div>
                     {{ session('success') }}
                 </div>
-                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
-                    aria-label="Close"></button>
             </div>
         </div>
         @endif
@@ -22,9 +24,13 @@
             aria-live="assertive" aria-atomic="true">
             <div class="d-flex">
                 <div class="toast-body">
-                    <div class="d-flex align-items-center mb-2">
-                        <span data-feather="x-circle" class="align-text-middle me-2"></span>
-                        <span class="fw-bold">Gagal</span>
+                    <div class="d-flex align-items-center mb-2 justify-content-between">
+                        <div>
+                            <span data-feather="x-circle" class="align-text-middle me-2 icon-size"></span>
+                            <span class="fw-bold">Gagal</span>
+                        </div>
+                        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="toast"
+                            aria-label="Close"></button>
                     </div>
                     {{ session('failed') }}
                 </div>
