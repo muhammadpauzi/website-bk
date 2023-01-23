@@ -1,4 +1,4 @@
-@props(['id', 'name',])
+@props(['id', 'name'])
 
 <textarea class="form-control @error($name) is-invalid @enderror" id="{{ $id ?? $name }}" name="{{ $name }}" {{
     $attributes }}>{{ $slot }}</textarea>

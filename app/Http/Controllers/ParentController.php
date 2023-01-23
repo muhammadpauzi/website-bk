@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Exports\ParentsTemplateExport;
 use App\Imports\ParentsImport;
 use App\Models\_Parent;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
 
@@ -28,7 +28,7 @@ class ParentController extends Controller
     {
         $parents = _Parent::query()
             ->with([
-                'student'
+                'students'
             ])
             ->filter()
             ->latest()
@@ -63,7 +63,7 @@ class ParentController extends Controller
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|max:128',
-            'phone' => 'required|max:15|numeric',
+            'phone' => 'required|max:20',
             'alamat' => 'required|max:512',
             'gender' => 'required|in:l,p',
         ], customAttributes: self::$customAttributes);
@@ -83,7 +83,7 @@ class ParentController extends Controller
      */
     public function show(_Parent $parent)
     {
-        $parent->load('student');
+        $parent->load('students');
 
         return view('parents.show', [
             'title' => 'Detail Data Orang Tua',
@@ -99,8 +99,6 @@ class ParentController extends Controller
      */
     public function edit(_Parent $parent)
     {
-        $parent->load('student');
-
         return view('parents.edit', [
             'title' => 'Edit Data Orang Tua',
             'parent' => $parent
@@ -118,7 +116,7 @@ class ParentController extends Controller
     {
         $validatedData = $this->validate($request, [
             'name' => 'required|max:128',
-            'phone' => 'required|max:15|numeric',
+            'phone' => 'required|max:20',
             'alamat' => 'required|max:512',
             'gender' => 'required|in:l,p',
         ], customAttributes: self::$customAttributes);

@@ -23,6 +23,15 @@
                     href="{{ route('classes.index') }}">Data Kelas</a>
             </li>
         </ul>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Data
+            Pelanggaran</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <li>
+                <a class="dropdown-item {{ request()->routeIs('offense-categories.*') ? 'active fw-bold' : '' }}"
+                    href="{{ route('offense-categories.index') }}">Data Kategori</a>
+            </li>
+        </ul>
     </li>
     {{-- <li class="nav-item">
         <a class="nav-link" href="#">Notifications</a>

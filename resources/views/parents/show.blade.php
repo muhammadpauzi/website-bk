@@ -29,12 +29,20 @@
                             <td class="text-bg-light fw-bold">Nama Lengkap</td>
                             <td>{{ $parent->name }}</td>
                         </tr>
-                        @if ($parent?->student)
+                        @if ($parent?->students)
                         <tr>
                             <td class="text-bg-light fw-bold">Siswa / Anak</td>
                             <td>
-                                <a href="{{ route('students.show', optional($parent->student)->id) }}"
-                                    class="badge text-bg-primary">{{ $parent->student->name }}</a>
+                                @if ($parent?->students)
+                                @foreach ($parent->students as $student)
+                                <a href="{{ route('students.show', $student->id) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->name }}</a>
+                                @if ($loop->iteration % 4 === 0)
+                                <br />
+                                @endif
+                                @endforeach
+                                @endif
                             </td>
                         </tr>
                         @endif
@@ -59,13 +67,15 @@
                         <tr>
                             <td class="text-bg-light fw-bold">Aksi</td>
                             <td>
-                                <a href="{{ route('parents.edit', $parent) }}" class="badge text-bg-primary">edit</a>
+                                <a href="{{ route('parents.edit', $parent) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
                                 <form action="{{ route('parents.destroy', $parent) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="border-0 badge text-bg-danger fw-bold">hapus</button>
+                                    <button type="submit"
+                                        class="border-0 badge text-danger-emphasis bg-danger-subtle border border-danger-subtle fw-bold">hapus</button>
                                 </form>
                             </td>
                         </tr>

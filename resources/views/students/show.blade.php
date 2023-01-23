@@ -42,7 +42,8 @@
                             <td class="text-bg-light fw-bold">Kelas</td>
                             <td>
                                 <a href="{{ route('classes.show', optional($student->class)->id) }}"
-                                    class="badge text-bg-primary">{{ $student->class->name }}</a>
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->class->name }}</a>
                             </td>
                         </tr>
                         @endif
@@ -51,7 +52,8 @@
                             <td class="text-bg-light fw-bold">Orang Tua</td>
                             <td>
                                 <a href="{{ route('parents.show', $student->parent->id) }}"
-                                    class="badge text-bg-primary">{{ $student->parent->name }}</a>
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->parent->name }}</a>
                             </td>
                         </tr>
                         @endif
@@ -74,13 +76,15 @@
                         <tr>
                             <td class="text-bg-light fw-bold">Aksi</td>
                             <td>
-                                <a href="{{ route('students.edit', $student) }}" class="badge text-bg-primary">edit</a>
+                                <a href="{{ route('students.edit', $student) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
                                 <form action="{{ route('students.destroy', $student) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="border-0 badge text-bg-danger fw-bold">hapus</button>
+                                    <button type="submit"
+                                        class="border-0 badge text-danger-emphasis bg-danger-subtle border border-danger-subtle fw-bold">hapus</button>
                                 </form>
                             </td>
                         </tr>

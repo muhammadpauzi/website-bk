@@ -118,11 +118,13 @@
                             <td>{{ $class->name }}</td>
                             <td>
                                 <a href="{{ route('teachers.show', $class->waliKelas->id) }}"
-                                    class="badge text-bg-primary">{{ $class->waliKelas->name }}</a>
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $class->waliKelas->name }}</a>
                             </td>
                             <td>
                                 @foreach ($class->students as $student)
-                                <a href="{{ route('students.show', $student->id) }}" class="badge text-bg-primary">{{
+                                <a href="{{ route('students.show', $student->id) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
                                     $student->name }}</a>
                                 @if ($loop->iteration % 4 === 0)
                                 <br />
@@ -133,14 +135,17 @@
                                 {{ $class->created_at->format('d F Y H:i') }}
                             </td>
                             <td>
-                                <a href="{{ route('classes.show', $class) }}" class="badge text-bg-info">detail</a>
-                                <a href="{{ route('classes.edit', $class) }}" class="badge text-bg-primary">edit</a>
+                                <a href="{{ route('classes.show', $class) }}"
+                                    class="badge text-info-emphasis bg-info-subtle border border-info-subtle">detail</a>
+                                <a href="{{ route('classes.edit', $class) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
                                 <form action="{{ route('classes.destroy', $class) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="border-0 badge text-bg-danger fw-bold">hapus</button>
+                                    <button type="submit"
+                                        class="border-0 badge text-danger-emphasis bg-danger-subtle border border-danger-subtle fw-bold">hapus</button>
                                 </form>
                             </td>
                         </tr>

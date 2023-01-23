@@ -94,15 +94,22 @@
                                 }}</th>
                             <td>{{ $parent->name }}</td>
                             <td>
-                                @if ($parent?->student)
-                                <a href="{{ route('students.show', $parent->student->id) }}"
-                                    class="badge text-bg-primary">{{ $parent->student->name }}</a>
+                                @if ($parent?->students)
+                                @foreach ($parent->students as $student)
+                                <a href="{{ route('students.show', $student->id) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->name }}</a>
+                                @if ($loop->iteration % 4 === 0)
+                                <br />
+                                @endif
+                                @endforeach
                                 @endif
                             </td>
                             <td>{!! nl2br($parent->alamat) !!}</td>
                             <td>{{ $parent->phone }}</td>
                             <td>
-                                <div class="badge text-bg-primary">{{ $parent->gender === 'l' ? 'Laki-Laki' :
+                                <div class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">
+                                    {{ $parent->gender === 'l' ? 'Laki-Laki' :
                                     "Perempuan"
                                     }}</div>
                             </td>
@@ -110,14 +117,17 @@
                                 {{ $parent->created_at->format('d F Y H:i') }}
                             </td>
                             <td>
-                                <a href="{{ route('parents.show', $parent) }}" class="badge text-bg-info">detail</a>
-                                <a href="{{ route('parents.edit', $parent) }}" class="badge text-bg-primary">edit</a>
+                                <a href="{{ route('parents.show', $parent) }}"
+                                    class="badge text-info-emphasis bg-info-subtle border border-info-subtle">detail</a>
+                                <a href="{{ route('parents.edit', $parent) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
                                 <form action="{{ route('parents.destroy', $parent) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="border-0 badge text-bg-danger fw-bold">hapus</button>
+                                    <button type="submit"
+                                        class="border-0 badge text-danger-emphasis bg-danger-subtle border border-danger-subtle fw-bold">hapus</button>
                                 </form>
                             </td>
                         </tr>

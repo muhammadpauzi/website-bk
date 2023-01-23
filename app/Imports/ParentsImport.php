@@ -19,10 +19,9 @@ class ParentsImport implements ToModel, WithChunkReading, WithStartRow, WithVali
     {
         return new _Parent([
             'name' => $row[0],
-            'student_id' => $row[1],
-            'alamat' => $row[2],
-            'phone' => $row[3],
-            'gender' => $row[4],
+            'alamat' => $row[1],
+            'phone' => $row[2],
+            'gender' => $row[3],
         ]);
     }
 
@@ -43,10 +42,9 @@ class ParentsImport implements ToModel, WithChunkReading, WithStartRow, WithVali
     {
         return [
             '*.0' => 'required|max:128',
-            '*.1' => 'required|numeric',
-            '*.2' => 'required|max:512',
-            '*.3' => 'required|max:15|numeric',
-            '*.4' => 'required|in:l,p',
+            '*.1' => 'required|max:512',
+            '*.2' => 'required|digits:20|numeric',
+            '*.3' => 'required|in:l,p',
         ];
     }
 
@@ -57,10 +55,9 @@ class ParentsImport implements ToModel, WithChunkReading, WithStartRow, WithVali
     {
         return [
             '0' => 'Nama Orang Tua',
-            '1' => 'Siswa / Anak (ID)',
-            '2' => 'Alamat',
-            '4' => 'No. HP',
-            '5' => 'Jenis Kelamin'
+            '1' => 'Alamat',
+            '2' => 'No. HP',
+            '3' => 'Jenis Kelamin'
         ];
     }
 }

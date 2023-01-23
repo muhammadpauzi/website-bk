@@ -4,7 +4,7 @@
 <div class="col-lg-7 col-md-6">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
-            <a href="{{ route('parents.index') }}" class="btn btn-sm btn-light border">
+            <a href="{{ route('offense-categories.index') }}" class="btn btn-sm btn-light border">
                 <i data-feather="arrow-left" class="me-1 icon-size"></i>
                 Kembali</a>
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="card shadow-lg">
-        <form action="{{ route('parents.store') }}" method="POST">
+        <form action="{{ route('offense-categories.store') }}" method="POST">
             @csrf
             <div class="card-header">
                 Form {{ $title }}
@@ -21,26 +21,20 @@
             <div class="card-body">
 
                 <div class="mb-3">
-                    <x-forms.label id="name">Nama Lengkap Orang Tua</x-forms.label>
+                    <x-forms.label id="name">Nama Kategori</x-forms.label>
                     <x-forms.input name="name" />
                 </div>
 
                 <div class="mb-3">
-                    <x-forms.label id="alamat">Alamat</x-forms.label>
-                    <x-forms.textarea name="alamat" maxlength="512"></x-forms.textarea>
+                    <x-forms.label id="description" :required="false">Keterangan</x-forms.label>
+                    <x-forms.textarea name="description"></x-forms.textarea>
                 </div>
+
                 <div class="mb-3">
-                    <x-forms.label id="phone">No. HP</x-forms.label>
-                    <x-forms.input type="tel" name="phone" maxlength="20" />
+                    <x-forms.label id="point">Point</x-forms.label>
+                    <x-forms.input type="number" name="point" min="0" />
                 </div>
 
-                <div class="mb-5">
-                    <x-forms.label id="gender">Jenis Kelamin</x-forms.label>
-
-                    <x-forms.radios name="gender" :items="['l' => 'Laki-Laki', 'p' => 'Perempuan']"
-                        valueDefaultChecked="l" />
-
-                </div>
             </div>
             <div class="card-footer">
                 <div class="d-flex align-items-center justify-content-between">

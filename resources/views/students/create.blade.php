@@ -13,12 +13,12 @@
         </div>
     </div>
     <div class="card shadow-lg">
-        <div class="card-header">
-            Form {{ $title }}
-        </div>
-        <div class="card-body">
-            <form action="{{ route('students.store') }}" method="POST">
-                @csrf
+        <form action="{{ route('students.store') }}" method="POST">
+            @csrf
+            <div class="card-header">
+                Form {{ $title }}
+            </div>
+            <div class="card-body">
 
                 <div class="mb-3">
                     <x-forms.label id="name">Nama Lengkap Siswa</x-forms.label>
@@ -37,7 +37,7 @@
                     <x-forms.input type="email" name="email" />
                 </div>
 
-                <div class="mb-5">
+                <div class="mb-3">
                     <x-forms.label id="gender">Jenis Kelamin</x-forms.label>
 
                     <x-forms.radios name="gender" :items="['l' => 'Laki-Laki', 'p' => 'Perempuan']"
@@ -45,6 +45,18 @@
 
                 </div>
 
+                <div class="mb-3">
+                    <x-forms.label id="parent_id" :required="false">Orang Tua</x-forms.label>
+                    <x-forms.tom-select id="parent_id" name="parent_id" placeholder="Pilih orang tua...">
+                        @foreach ($parents as $parent)
+                        <option @selected($parent->id == old('parent_id')) value="{{ $parent->id }}">#{{
+                            $parent->id }} - {{
+                            $parent->name }}</option>
+                        @endforeach
+                    </x-forms.tom-select>
+                </div>
+            </div>
+            <div class="card-footer">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <button type="reset" class="btn btn-warning fw-bold">
@@ -57,8 +69,8 @@
                             Simpan</button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

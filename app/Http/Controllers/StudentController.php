@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Exports\StudentsTemplateExport;
 use App\Imports\StudentsImport;
+use App\Models\_Parent;
 use App\Models\Student;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -47,7 +48,10 @@ class StudentController extends Controller
     public function create()
     {
         return view('students.create', [
-            'title' => 'Tambah Data Siswa'
+            'title' => 'Tambah Data Siswa',
+            'parents' => _Parent::query()
+                ->select(['id', 'name'])
+                ->get()
         ]);
     }
 
@@ -65,6 +69,7 @@ class StudentController extends Controller
             'nisn' => 'required|numeric|unique:students|digits:10',
             'email' => 'required|email',
             'gender' => 'required|in:l,p',
+            'parent_id' => 'sometimes|numeric'
         ], customAttributes: self::$customAttributes);
 
         Student::create($validatedData);
@@ -99,7 +104,10 @@ class StudentController extends Controller
     {
         return view('students.edit', [
             'title' => 'Edit Data Siswa',
-            'student' => $student
+            'student' => $student,
+            'parents' => _Parent::query()
+                ->select(['id', 'name'])
+                ->get()
         ]);
     }
 
@@ -121,6 +129,7 @@ class StudentController extends Controller
             'nisn' => 'required|numeric|digits:10' . $nisnUniqueValidation,
             'email' => 'required|email',
             'gender' => 'required|in:l,p',
+            'parent_id' => 'sometimes|numeric'
         ], customAttributes: self::$customAttributes);
 
         $student->update($validatedData);

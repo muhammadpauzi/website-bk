@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\OffenseCategoryController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
@@ -53,6 +54,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/parents/import', [ParentController::class, 'importTemplateExcel'])
         ->name('parents.import');
 
+    Route::resource('/offense-categories', OffenseCategoryController::class);
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });

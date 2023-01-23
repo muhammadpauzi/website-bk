@@ -4,7 +4,7 @@
 <div class="col-lg-7 col-md-6">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
-            <a href="{{ route('teachers.index') }}" class="btn btn-sm btn-light border">
+            <a href="{{ route('offense-categories.index') }}" class="btn btn-sm btn-light border">
                 <i data-feather="arrow-left" class="me-1 icon-size"></i>
                 Kembali</a>
         </div>
@@ -23,38 +23,53 @@
                     <tbody>
                         <tr>
                             <td class="text-bg-light fw-bold">ID</td>
-                            <td>{{ $teacher->id }}</td>
+                            <td>{{ $offenseCategory->id }}</td>
                         </tr>
                         <tr>
-                            <td class="text-bg-light fw-bold">NIP</td>
-                            <td>{{ $teacher->nip }}</td>
+                            <td class="text-bg-light fw-bold">Nama Kategori</td>
+                            <td>{{ $offenseCategory->name }}</td>
                         </tr>
                         <tr>
-                            <td class="text-bg-light fw-bold">Nama Lengkap</td>
-                            <td>{{ $teacher->name }}</td>
-                        </tr>
-                        <tr>
-                            <td class="text-bg-light fw-bold">Email</td>
+                            <td class="text-bg-light fw-bold">Poin</td>
                             <td>
-                                <a href="mailto:{{ $teacher->email }}">{{ $teacher->email }}</a>
+                                <span
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $offenseCategory->point }}</span>
                             </td>
                         </tr>
                         <tr>
+                            <td class="text-bg-light fw-bold">Status Aktif</td>
+                            <td>
+                                @if ($offenseCategory->is_active)
+                                <div class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
+                                    Aktif</div>
+                                @else
+                                <div class="badge text-danger-emphasis bg-danger-subtle border border-danger-subtle">
+                                    Nonaktif</div>
+                                @endif
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="text-bg-light fw-bold">Keterangan</td>
+                            <td>{!! nl2br($offenseCategory->description) !!}</td>
+                        </tr>
+                        <tr>
                             <td class="text-bg-light fw-bold">Ditambahkan pada</td>
-                            <td>{{ $teacher->created_at->format('d F Y H:i') }} ({{
-                                $teacher->created_at->diffForHumans() }})</td>
+                            <td>{{ $offenseCategory->created_at->format('d F Y H:i') }} ({{
+                                $offenseCategory->created_at->diffForHumans() }})</td>
                         </tr>
                         <tr>
                             <td class="text-bg-light fw-bold">Diubah pada</td>
-                            <td>{{ $teacher->updated_at->format('d F Y H:i') }} ({{
-                                $teacher->updated_at->diffForHumans() }})</td>
+                            <td>{{ $offenseCategory->updated_at->format('d F Y H:i') }} ({{
+                                $offenseCategory->updated_at->diffForHumans() }})</td>
                         </tr>
                         <tr>
                             <td class="text-bg-light fw-bold">Aksi</td>
                             <td>
-                                <a href="{{ route('teachers.edit', $teacher) }}"
+                                <a href="{{ route('offense-categories.edit', $offenseCategory) }}"
                                     class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
-                                <form action="{{ route('teachers.destroy', $teacher) }}" class="d-inline-block"
+                                <form action="{{ route('offense-categories.destroy', $offenseCategory) }}"
+                                    class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf

@@ -13,12 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('parents', function (Blueprint $table) {
+        Schema::create('offense_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('alamat', 512);
-            $table->string('phone', 20);
-            $table->enum('gender', ['l', 'p']);
+            $table->string('name', 128);
+            $table->string('description', 512)->nullable();
+            $table->integer('point')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orang_tuas');
+        Schema::dropIfExists('offense_categories');
     }
 };

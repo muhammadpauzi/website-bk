@@ -18,6 +18,7 @@ class StudentsTemplateExport implements WithHeadings, ShouldAutoSize
             "Nama Lengkap Siswa",
             "Email",
             "Jenis Kelamin (L/P)",
+            "Orang Tua (ID)",
         ];
     }
 }

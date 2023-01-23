@@ -112,20 +112,23 @@
                             <td>
                                 @if ($student?->class)
                                 <a href="{{ route('classes.show', $student->class->id) }}"
-                                    class="badge text-bg-primary">{{ $student->class->name }}</a>
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->class->name }}</a>
                                 @endif
                             </td>
                             <td>
                                 @if ($student?->parent)
                                 <a href="{{ route('parents.show', $student->parent->id) }}"
-                                    class="badge text-bg-primary">{{ $student->parent->name }}</a>
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->parent->name }}</a>
                                 @endif
                             </td>
                             <td>
                                 <a href="mailto:{{ $student->email }}">{{ $student->email }}</a>
                             </td>
                             <td>
-                                <div class="badge text-bg-primary">{{ $student->gender === 'l' ? 'Laki-Laki' :
+                                <div class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">
+                                    {{ $student->gender === 'l' ? 'Laki-Laki' :
                                     "Perempuan"
                                     }}</div>
                             </td>
@@ -133,14 +136,17 @@
                                 {{ $student->created_at->format('d F Y H:i') }}
                             </td>
                             <td>
-                                <a href="{{ route('students.show', $student) }}" class="badge text-bg-info">detail</a>
-                                <a href="{{ route('students.edit', $student) }}" class="badge text-bg-primary">edit</a>
+                                <a href="{{ route('students.show', $student) }}"
+                                    class="badge text-info-emphasis bg-info-subtle border border-info-subtle">detail</a>
+                                <a href="{{ route('students.edit', $student) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
                                 <form action="{{ route('students.destroy', $student) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="border-0 badge text-bg-danger fw-bold">hapus</button>
+                                    <button type="submit"
+                                        class="border-0 badge text-danger-emphasis bg-danger-subtle border border-danger-subtle fw-bold">hapus</button>
                                 </form>
                             </td>
                         </tr>

@@ -35,12 +35,10 @@
                     </li>
                 </ul>
             </div>
-            <div>
-                <a href="{{ route('students.create') }}" class="btn btn-primary fw-bold">
-                    <span data-feather="plus-circle" class="me-1 icon-size"></span>
-                    Tambah
-                </a>
-            </div>
+            <button class="btn btn-primary" data-bs-toggle="offcanvas" data-bs-target="#offcanvasFilter"
+                aria-controls="offcanvasFilter" type="button">
+                <span data-feather="filter" class="icon-size"></span>
+            </button>
         </div>
         <div>
             <a href="{{ route('teachers.create') }}" class="btn btn-primary fw-bold">
@@ -109,7 +107,8 @@
                                 <a href="mailto:{{ $teacher->email }}">{{ $teacher->email }}</a>
                             </td>
                             <td>
-                                <div class="badge text-bg-primary">{{ $teacher->gender === 'l' ? 'Laki-Laki' :
+                                <div class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">
+                                    {{ $teacher->gender === 'l' ? 'Laki-Laki' :
                                     "Perempuan"
                                     }}</div>
                             </td>
@@ -117,14 +116,17 @@
                                 {{ $teacher->created_at->format('d F Y H:i') }}
                             </td>
                             <td>
-                                <a href="{{ route('teachers.show', $teacher) }}" class="badge text-bg-info">detail</a>
-                                <a href="{{ route('teachers.edit', $teacher) }}" class="badge text-bg-primary">edit</a>
+                                <a href="{{ route('teachers.show', $teacher) }}"
+                                    class="badge text-info-emphasis bg-info-subtle border border-info-subtle">detail</a>
+                                <a href="{{ route('teachers.edit', $teacher) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">edit</a>
                                 <form action="{{ route('teachers.destroy', $teacher) }}" class="d-inline-block"
                                     onsubmit="return confirm('Apakah anda yakin ingin menghapus data ini?')"
                                     method="POST">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="border-0 badge text-bg-danger fw-bold">hapus</button>
+                                    <button type="submit"
+                                        class="border-0 badge text-danger-emphasis bg-danger-subtle border border-danger-subtle fw-bold">hapus</button>
                                 </form>
                             </td>
                         </tr>

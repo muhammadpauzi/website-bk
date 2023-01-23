@@ -13,12 +13,12 @@
         </div>
     </div>
     <div class="card shadow-lg">
-        <div class="card-header">
-            Form {{ $title }}
-        </div>
-        <div class="card-body">
-            <form action="{{ route('classes.store') }}" method="POST">
-                @csrf
+        <form action="{{ route('classes.store') }}" method="POST">
+            @csrf
+            <div class="card-header">
+                Form {{ $title }}
+            </div>
+            <div class="card-body">
 
                 <div class="mb-3">
                     <x-forms.label id="name">Nama Kelas</x-forms.label>
@@ -51,7 +51,8 @@
                         @endforeach
                     </x-forms.tom-select>
                 </div>
-
+            </div>
+            <div class="card-footer">
                 <div class="d-flex align-items-center justify-content-between">
                     <div>
                         <button type="reset" class="btn btn-warning fw-bold">
@@ -64,8 +65,8 @@
                             Simpan</button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

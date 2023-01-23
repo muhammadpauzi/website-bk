@@ -23,6 +23,7 @@ class StudentsImport implements ToModel, WithChunkReading, WithStartRow, WithVal
             'name' => $row[2],
             'email' => $row[3],
             'gender' => $row[4],
+            'parent_id' => $row[5],
         ]);
     }
 
@@ -47,6 +48,7 @@ class StudentsImport implements ToModel, WithChunkReading, WithStartRow, WithVal
             '*.2' => 'required|max:128',
             '*.3' => 'required|email',
             '*.4' => 'required|in:l,p',
+            '*.5' => 'numeric',
         ];
     }
 
@@ -55,6 +57,13 @@ class StudentsImport implements ToModel, WithChunkReading, WithStartRow, WithVal
      */
     public function customValidationAttributes()
     {
-        return ['0' => 'NIS', '1' => 'NISN', '2' => 'Nama Lengkap Siswa', '3' => 'Email', '4' => 'Jenis Kelamin'];
+        return [
+            '0' => 'NIS',
+            '1' => 'NISN',
+            '2' => 'Nama Lengkap Siswa',
+            '3' => 'Email',
+            '4' => 'Jenis Kelamin',
+            '5' => 'Orang Tua (ID)'
+        ];
     }
 }

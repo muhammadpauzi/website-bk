@@ -14,13 +14,13 @@
         </div>
     </div>
     <div class="card shadow-lg">
-        <div class="card-header">
-            Form {{ $title }}
-        </div>
-        <div class="card-body">
-            <form action="{{ route('classes.update', $class) }}" method="POST">
-                @csrf
-                @method('PUT')
+        <form action="{{ route('classes.update', $class) }}" method="POST">
+            @csrf
+            @method('PUT')
+            <div class="card-header">
+                Form {{ $title }}
+            </div>
+            <div class="card-body">
                 <div class="mb-3">
                     <x-forms.label id="name">Nama Kelas</x-forms.label>
                     <x-forms.input name="name" :value="old('name', $class->name)" />
@@ -54,7 +54,9 @@
                         @endforeach
                     </x-forms.tom-select>
                 </div>
+            </div>
 
+            <div class="card-footer">
                 <div class="d-flex align-items-center justify-content-end">
                     <div>
                         <button class="btn btn-primary fw-bold">
@@ -62,8 +64,8 @@
                             Simpan</button>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
 @endsection

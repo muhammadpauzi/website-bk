@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\_Parent;
 use App\Models\Class_;
+use App\Models\OffenseCategory;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Database\Seeder;
@@ -48,5 +49,7 @@ class DatabaseSeeder extends Seeder
                     ]);
                 });
             });
+
+        OffenseCategory::factory(30)->create();
     }
 }
