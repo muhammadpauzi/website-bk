@@ -24,6 +24,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
     Route::resource('/students', StudentController::class);
+    Route::post('/students/template', [StudentController::class, 'downloadTemplateExcel'])
+        ->name('students.template');
+    Route::post('/students/import', [StudentController::class, 'importTemplateExcel'])
+        ->name('students.import');
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });

@@ -14,13 +14,17 @@
                         <h6 class="dropdown-header">Import Data Siswa</h6>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
-                            <i data-feather="download" class="me-2 icon-size"></i>
-                            Download Template Excel
-                        </a>
+                        <form action="{{ route('students.template') }}" method="post">
+                            @csrf
+                            <button class="dropdown-item" type="submit">
+                                <i data-feather="download" class="me-2 icon-size"></i>
+                                Download Template Excel
+                            </button>
+                        </form>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="#" data-bs-toggle="modal"
+                            data-bs-target="#importStudentExcelModal">
                             <i data-feather="upload" class="me-2 icon-size"></i>
                             Import Data Siswa (.xlsx)</a>
                     </li>
@@ -39,6 +43,8 @@
             </a>
         </div>
     </div>
+
+    @include('partials.validation-alerts')
 
     <div class="py-2">
         <x-forms.filters :sortItems="[
@@ -126,6 +132,35 @@
             <hr>
 
             {{ $students->onEachSide(1)->links() }}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="importStudentExcelModal" tabindex="-1" aria-labelledby="importStudentExcelModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form action="{{ route('students.import') }}" method="POST" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="importStudentExcelModalLabel">Import Data Siswa</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <x-forms.label id="file">File Template Excel</x-forms.label>
+                        <x-forms.input type="file" name="file" />
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-danger fw-bold" data-bs-dismiss="modal">Tutup</button>
+                    <button type="submit" class="btn btn-primary fw-bold">
+                        <span data-feather="upload" class="me-2 icon-size"></span>
+                        Import
+                    </button>
+                </div>
+            </form>
         </div>
     </div>
 </div>

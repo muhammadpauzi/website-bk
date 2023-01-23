@@ -2,12 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\StudentsTemplateExport;
+use App\Imports\StudentsImport;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
 {
-    private array $customAttributes = [
+
+    public static array $customAttributes = [
         'name' => 'Nama Lengkap Siswa',
         'nis' => 'NIS',
         'nisn' => 'NISN',
@@ -137,5 +141,25 @@ class StudentController extends Controller
         return redirect()
             ->route('students.index')
             ->with('success', 'Data siswa berhasil dihapus.');
+    }
+
+    public function downloadTemplateExcel()
+    {
+        return Excel::download(new StudentsTemplateExport, 'TEMPLATE_SISWA.xlsx');
+    }
+
+    public function importTemplateExcel(Request $request)
+    {
+        $this->validate($request, [
+            'file' => 'required|mimes:xlsx,ods,odt,odp'
+        ], customAttributes: [
+            'file' => 'File Template Excel'
+        ]);
+
+        Excel::import(new StudentsImport, $request->file('file'));
+
+        return redirect()
+            ->route('students.index')
+            ->with('success', 'Data siswa berhasil di-import.');
     }
 }

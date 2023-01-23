@@ -104,10 +104,6 @@ body {
     -webkit-overflow-scrolling: touch;
 }
 
-.dropdown-menu {
-    margin: 4rem auto;
-}
-
 .dropdown-item-danger {
     color: var(--bs-red);
 }
