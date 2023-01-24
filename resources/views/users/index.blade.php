@@ -26,7 +26,7 @@
         <div>
             <a href="{{ route('users.create') }}" class="btn btn-primary fw-bold">
                 <span data-feather="plus-circle" class="me-1 icon-size"></span>
-                Tambah
+                Tambah (Superadmin)
             </a>
         </div>
     </div>
@@ -98,7 +98,7 @@
                                 <div class="badge text-info-emphasis bg-info-subtle border border-info-subtle">
                                     GURU |
                                     @if(optional($user->teacher))
-                                    <a href="{{ route('teachers.show', optional($user->teacher)->name) }}">{{
+                                    <a href="{{ route('teachers.show', optional($user->teacher)->id) }}">{{
                                         $user->name }}</a>
                                     @endif
                                 </div>
@@ -106,7 +106,7 @@
                                 <div class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
                                     SISWA |
                                     @if(optional($user->student))
-                                    <a href="{{ route('students.show', optional($user->student)->name) }}">{{
+                                    <a href="{{ route('students.show', optional($user->student)->id) }}">{{
                                         $user->name }}</a>
                                     @endif
                                 </div>
@@ -114,7 +114,7 @@
                                 <div class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
                                     ORANG TUA |
                                     @if(optional($user->parent))
-                                    <a href="{{ route('parents.show', optional($user->parent)->name) }}">{{
+                                    <a href="{{ route('parents.show', optional($user->parent)->id) }}">{{
                                         $user->name }}</a>
                                     @endif
                                 </div>
@@ -171,7 +171,6 @@
                                 login. (* proses ini mungkin relatif lama, jika datanya banyak)</li>
                             <li>Sync, Akan mengupdate data seperti nama, agar sama dengan data relasi (guru, siswa,
                                 orang tua) nya.</li>
-                            <li>Jika data guru, siswa, dan orang tua dihapus, maka data users juga akan terhapus.</li>
                         </ul>
                     </div>
                     <div class="mb-3">

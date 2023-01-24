@@ -80,6 +80,7 @@
                             <th scope="col">Nama Lengkap</th>
                             <th scope="col">Kelas</th>
                             <th scope="col">Orang Tua</th>
+                            <th scope="col">User</th>
                             <th scope="col">Email</th>
                             <th scope="col">Jenis Kelamin</th>
                             <th scope="col">Ditambahkan pada</th>
@@ -121,6 +122,13 @@
                                 <a href="{{ route('parents.show', $student->parent->id) }}"
                                     class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
                                     $student->parent->name }}</a>
+                                @endif
+                            </td>
+                            <td>
+                                @if ($student?->user)
+                                <a href="{{ route('users.show', $student->user->id) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $student->user->name }}</a>
                                 @endif
                             </td>
                             <td>

@@ -136,6 +136,7 @@ class ParentController extends Controller
      */
     public function destroy(_Parent $parent)
     {
+        optional($parent->user())->delete();
         $parent->delete();
 
         return redirect()

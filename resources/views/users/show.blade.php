@@ -52,28 +52,28 @@
                                     SUPERADMIN</div>
                                 @elseif($user->role === \App\Models\User::$TEACHER)
                                 <div class="badge text-info-emphasis bg-info-subtle border border-info-subtle">
-                                    GURU</div>
+                                    GURU |
+                                    @if(optional($user->teacher))
+                                    <a href="{{ route('teachers.show', optional($user->teacher)->id) }}">{{
+                                        $user->name }}</a>
+                                    @endif
+                                </div>
                                 @elseif($user->role === \App\Models\User::$STUDENT)
                                 <div class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
-                                    SISWA</div>
+                                    SISWA |
+                                    @if(optional($user->student))
+                                    <a href="{{ route('students.show', optional($user->student)->id) }}">{{
+                                        $user->name }}</a>
+                                    @endif
+                                </div>
                                 @elseif($user->role === \App\Models\User::$PARENT)
                                 <div class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
-                                    ORANG TUA</div>
-                                @endif
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="text-bg-light fw-bold">Data User</td>
-                            <td>
-                                @if($user->role === \App\Models\User::$TEACHER)
-                                <div class="badge text-info-emphasis bg-info-subtle border border-info-subtle">
-                                    {{ optional($user->teacher)->name }}</div>
-                                @elseif($user->role === \App\Models\User::$STUDENT)
-                                <div class="badge text-success-emphasis bg-success-subtle border border-success-subtle">
-                                    {{ optional($user->student)->name }}</div>
-                                @elseif($user->role === \App\Models\User::$PARENT)
-                                <div class="badge text-warning-emphasis bg-warning-subtle border border-warning-subtle">
-                                    {{ optional($user->parent)->name }}</div>
+                                    ORANG TUA |
+                                    @if(optional($user->parent))
+                                    <a href="{{ route('parents.show', optional($user->parent)->id) }}">{{
+                                        $user->name }}</a>
+                                    @endif
+                                </div>
                                 @endif
                             </td>
                         </tr>

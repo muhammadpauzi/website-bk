@@ -77,6 +77,7 @@
                             <th scope="col">NIP</th>
                             <th scope="col">Nama Lengkap</th>
                             <th scope="col">Email</th>
+                            <th scope="col">User</th>
                             <th scope="col">Jenis Kelamin</th>
                             <th scope="col">Ditambahkan pada</th>
                             <th scope="col">Aksi</th>
@@ -105,6 +106,13 @@
                             <td>{{ $teacher->name }}</td>
                             <td>
                                 <a href="mailto:{{ $teacher->email }}">{{ $teacher->email }}</a>
+                            </td>
+                            <td>
+                                @if ($teacher?->user)
+                                <a href="{{ route('users.show', $teacher->user->id) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $teacher->user->name }}</a>
+                                @endif
                             </td>
                             <td>
                                 <div class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">

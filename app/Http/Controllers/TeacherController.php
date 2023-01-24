@@ -26,6 +26,7 @@ class TeacherController extends Controller
     public function index()
     {
         $teachers = Teacher::query()
+            ->with(['user'])
             ->filter()
             ->latest()
             ->paginate()
@@ -132,6 +133,7 @@ class TeacherController extends Controller
      */
     public function destroy(Teacher $teacher)
     {
+        optional($teacher->user())->delete();
         $teacher->delete();
 
         return redirect()

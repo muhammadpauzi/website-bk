@@ -28,7 +28,7 @@ class StudentController extends Controller
     public function index()
     {
         $students = Student::query()
-            ->with(['class', 'parent'])
+            ->with(['class', 'parent', 'user'])
             ->filter()
             ->latest()
             ->paginate()
@@ -147,6 +147,7 @@ class StudentController extends Controller
      */
     public function destroy(Student $student)
     {
+        optional($student->user())->delete();
         $student->delete();
 
         return redirect()

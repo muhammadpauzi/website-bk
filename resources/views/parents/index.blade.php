@@ -71,6 +71,7 @@
                             <th scope="col" class="text-center">#</th>
                             <th scope="col">Nama Lengkap</th>
                             <th scope="col">Siswa / Anak</th>
+                            <th scope="col">User</th>
                             <th scope="col">Alamat</th>
                             <th scope="col">No. HP</th>
                             <th scope="col">Jenis Kelamin</th>
@@ -103,6 +104,13 @@
                                 <br />
                                 @endif
                                 @endforeach
+                                @endif
+                            </td>
+                            <td>
+                                @if ($parent?->user)
+                                <a href="{{ route('users.show', $parent->user->id) }}"
+                                    class="badge text-primary-emphasis bg-primary-subtle border border-primary-subtle">{{
+                                    $parent->user->name }}</a>
                                 @endif
                             </td>
                             <td>{!! nl2br($parent->alamat) !!}</td>
