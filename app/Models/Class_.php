@@ -22,7 +22,10 @@ class Class_ extends Model
     public function search(Builder $query, $value)
     {
         return $query
-            ->where('name', 'LIKE', "%$value%");
+            ->when($value, function ($query_) use ($value) {
+                $query_
+                    ->where('name', 'LIKE', "%$value%");
+            });
     }
 
     public function by_wali_kelas(Builder $query, $value)

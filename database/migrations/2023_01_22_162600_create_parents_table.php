@@ -19,6 +19,10 @@ return new class extends Migration
             $table->string('alamat', 512);
             $table->string('phone', 20);
             $table->enum('gender', ['l', 'p']);
+            $table->foreignId('user_id')
+                ->nullable()
+                ->constrained()
+                ->nullOnDelete();
             $table->timestamps();
         });
     }

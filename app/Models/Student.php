@@ -18,10 +18,13 @@ class Student extends Model
     public function search(Builder $query, $value)
     {
         return $query
-            ->where('name', 'LIKE', "%$value%")
-            ->orWhere('nis', 'LIKE', "%$value%")
-            ->orWhere('nisn', 'LIKE', "%$value%")
-            ->orWhere('email', 'LIKE', "%$value%");
+            ->when($value, function ($query_) use ($value) {
+                $query_
+                    ->where('name', 'LIKE', "%$value%")
+                    ->orWhere('nis', 'LIKE', "%$value%")
+                    ->orWhere('nisn', 'LIKE', "%$value%")
+                    ->orWhere('email', 'LIKE', "%$value%");
+            });
     }
 
     public function class(): BelongsTo
@@ -32,5 +35,10 @@ class Student extends Model
     public function parent(): BelongsTo
     {
         return $this->belongsTo(_Parent::class, 'parent_id', 'id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

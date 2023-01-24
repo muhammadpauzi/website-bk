@@ -13,16 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('teachers', function (Blueprint $table) {
+        Schema::create('tindakans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('nip', 18)->unique();
-            $table->string('email');
-            $table->enum('gender', ['l', 'p']);
-            $table->foreignId('user_id')
-                ->nullable()
-                ->constrained()
-                ->nullOnDelete();
+            $table->string('name', 128);
+            $table->string('description', 512)->nullable();
+            $table->integer('min_point')->default(0);
+            $table->integer('max_point')->default(0);
+            $table->boolean('is_active')->default(true);
             $table->timestamps();
         });
     }
@@ -34,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('teachers');
+        Schema::dropIfExists('tindakans');
     }
 };

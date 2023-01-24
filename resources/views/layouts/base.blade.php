@@ -13,19 +13,20 @@
         href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;0,900;1,200;1,300;1,400;1,600;1,700;1,900&display=swap"
         rel="stylesheet">
 
+    <style>
+        * {
+            font-family: "Source Sans Pro", sans-serif !important;
+        }
+    </style>
+
     <link rel="stylesheet" href="{{ asset('vendors/bootstrap-5.3.0-alpha/css/bootstrap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/flatpickr/flatpickr.min.css') }}">
     <link rel="stylesheet" href="{{ asset('vendors/tom-select/tom-select.bootstrap5.min.css') }}">
 
-    <style>
-        * {
-            font-family: "Source Sans Pro", sans-serif;
-        }
-    </style>
 
     @stack('style')
 
-    <title>{{ $title ?? 'No Title' }} | Website Point Pelanggaran</title>
+    <title>{{ $title ?? 'No Title' }} | Website Poin Pelanggaran</title>
 </head>
 
 <body class="bg-light">

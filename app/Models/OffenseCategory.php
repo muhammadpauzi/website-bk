@@ -17,8 +17,11 @@ class OffenseCategory extends Model
     public function search(Builder $query, $value)
     {
         return $query
-            ->where('name', 'LIKE', "%$value%")
-            ->orWhere('description', 'LIKE', "%$value%")
-            ->orWhere('point', 'LIKE', "%$value%");
+            ->when($value, function ($query_) use ($value) {
+                $query_
+                    ->where('name', 'LIKE', "%$value%")
+                    ->orWhere('description', 'LIKE', "%$value%")
+                    ->orWhere('point', 'LIKE', "%$value%");
+            });
     }
 }

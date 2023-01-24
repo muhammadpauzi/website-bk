@@ -31,6 +31,20 @@
                 <a class="dropdown-item {{ request()->routeIs('offense-categories.*') ? 'active fw-bold' : '' }}"
                     href="{{ route('offense-categories.index') }}">Data Kategori</a>
             </li>
+            <li>
+                <a class="dropdown-item {{ request()->routeIs('tindakans.*') ? 'active fw-bold' : '' }}"
+                    href="{{ route('tindakans.index') }}">Data Tindakan</a>
+            </li>
+        </ul>
+    </li>
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" aria-expanded="false">Users
+            Management</a>
+        <ul class="dropdown-menu dropdown-menu-dark">
+            <li>
+                <a class="dropdown-item {{ request()->routeIs('users.*') ? 'active fw-bold' : '' }}"
+                    href="{{ route('users.index') }}">Data Users</a>
+            </li>
         </ul>
     </li>
     {{-- <li class="nav-item">

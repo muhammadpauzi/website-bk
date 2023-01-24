@@ -9,6 +9,7 @@ use App\Models\Class_;
 use App\Models\OffenseCategory;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Tindakan;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
@@ -22,13 +23,13 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        foreach (['users', 'students', 'teachers', 'classes'] as $table) {
+        foreach (['users', 'students', 'teachers', 'classes', 'offense_categories', 'tindakans'] as $table) {
             Schema::disableForeignKeyConstraints();
             DB::table($table)->truncate();
             Schema::enableForeignKeyConstraints();
         }
 
-        \App\Models\User::factory(10)->create();
+        // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Muhammad Pauzi',
@@ -36,7 +37,7 @@ class DatabaseSeeder extends Seeder
             'role' => 'superadmin'
         ]);
 
-        Teacher::factory(50)
+        Teacher::factory(30)
             ->create()
             ->each(function (Teacher $teacher) {
                 Class_::factory(1)->create([
@@ -51,5 +52,6 @@ class DatabaseSeeder extends Seeder
             });
 
         OffenseCategory::factory(30)->create();
+        Tindakan::factory(30)->create();
     }
 }

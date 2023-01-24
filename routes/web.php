@@ -7,6 +7,8 @@ use App\Http\Controllers\OffenseCategoryController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
+use App\Http\Controllers\TindakanController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -55,6 +57,12 @@ Route::middleware('auth')->group(function () {
         ->name('parents.import');
 
     Route::resource('/offense-categories', OffenseCategoryController::class);
+
+    Route::resource('/tindakans', TindakanController::class);
+
+    Route::resource('/users', UserController::class);
+    Route::post('/users/synchronize', [UserController::class, 'synchronizeUserAccountForTeacherStudentParent'])
+        ->name('users.synchronize');
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });

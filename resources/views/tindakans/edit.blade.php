@@ -4,7 +4,7 @@
 <div class="col-lg-7 col-md-6">
     <div class="d-flex align-items-center justify-content-between mb-4">
         <div>
-            <a href="{{ route('offense-categories.index') }}" class="btn btn-sm btn-light border">
+            <a href="{{ route('tindakans.index') }}" class="btn btn-sm btn-light border">
                 <i data-feather="arrow-left" class="me-1 icon-size"></i>
                 Kembali</a>
         </div>
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="card shadow-lg">
-        <form action="{{ route('offense-categories.update', $offenseCategory) }}" method="POST">
+        <form action="{{ route('tindakans.update', $tindakan) }}" method="POST">
             @csrf
             @method('PUT')
             <div class="card-header">
@@ -22,26 +22,33 @@
             <div class="card-body">
 
                 <div class="mb-3">
-                    <x-forms.label id="name">Nama Kategori</x-forms.label>
-                    <x-forms.input name="name" :value="old('name', $offenseCategory->name)" />
+                    <x-forms.label id="name">Nama Tindakan</x-forms.label>
+                    <x-forms.input name="name" :value="old('name', $tindakan->name)" />
                 </div>
 
                 <div class="mb-3">
                     <x-forms.label id="description" :required="false">Keterangan</x-forms.label>
-                    <x-forms.textarea name="description">{{ old('description', $offenseCategory->description) }}
+                    <x-forms.textarea name="description">{{ old('description', $tindakan->description) }}
                     </x-forms.textarea>
                 </div>
 
                 <div class="mb-3">
-                    <x-forms.label id="point">Poin</x-forms.label>
-                    <x-forms.input type="number" name="point" min="0" :value="old('point', $offenseCategory->point)" />
+                    <x-forms.label id="min_point">Min. Poin</x-forms.label>
+                    <x-forms.input type="number" name="min_point" min="0"
+                        :value="old('min_point', $tindakan->min_point)" />
+                </div>
+
+                <div class="mb-3">
+                    <x-forms.label id="max_point">Max. Poin</x-forms.label>
+                    <x-forms.input type="number" name="max_point" min="0"
+                        :value="old('max_point', $tindakan->max_point)" />
                 </div>
 
                 <div class="mb-5">
                     <x-forms.label id="is_active">Status Aktif</x-forms.label>
 
                     <x-forms.radios name="is_active" :items="['0' => 'Nonaktif', '1' => 'Aktif']"
-                        :valueDefaultChecked="old('is_active', $offenseCategory->is_active)" />
+                        :valueDefaultChecked="old('is_active', $tindakan->is_active)" />
 
                 </div>
 

@@ -21,13 +21,21 @@ class _Parent extends Model
     public function search(Builder $query, $value)
     {
         return $query
-            ->where('name', 'LIKE', "%$value%")
-            ->orWhere('alamat', 'LIKE', "%$value%")
-            ->orWhere('phone', 'LIKE', "%$value%");
+            ->when($value, function ($query_) use ($value) {
+                $query_
+                    ->where('name', 'LIKE', "%$value%")
+                    ->orWhere('alamat', 'LIKE', "%$value%")
+                    ->orWhere('phone', 'LIKE', "%$value%");
+            });
     }
 
     public function students(): HasMany
     {
         return $this->hasMany(Student::class, 'parent_id', 'id');
+    }
+
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo(User::class);
     }
 }

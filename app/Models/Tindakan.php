@@ -5,15 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Mehradsadeghi\FilterQueryString\FilterQueryString;
 
-class Teacher extends Model
+class Tindakan extends Model
 {
     use HasFactory, FilterQueryString;
 
     protected $guarded = ['id'];
-
     protected $filters = ['search', 'sort'];
 
     public function search(Builder $query, $value)
@@ -22,13 +20,9 @@ class Teacher extends Model
             ->when($value, function ($query_) use ($value) {
                 $query_
                     ->where('name', 'LIKE', "%$value%")
-                    ->orWhere('nip', 'LIKE', "%$value%")
-                    ->orWhere('email', 'LIKE', "%$value%");
+                    ->orWhere('description', 'LIKE', "%$value%")
+                    ->orWhere('min_point', 'LIKE', "%$value%")
+                    ->orWhere('max_point', 'LIKE', "%$value%");
             });
-    }
-
-    public function user(): BelongsTo
-    {
-        return $this->belongsTo(User::class);
     }
 }
