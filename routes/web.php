@@ -29,40 +29,42 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
 
-    Route::resource('/students', StudentController::class);
-    Route::post('/students/template', [StudentController::class, 'downloadTemplateExcel'])
-        ->name('students.template');
-    Route::post('/students/import', [StudentController::class, 'importTemplateExcel'])
-        ->name('students.import');
+    Route::middleware('role:superadmin')->group(function () {
+        Route::resource('/students', StudentController::class);
+        Route::post('/students/template', [StudentController::class, 'downloadTemplateExcel'])
+            ->name('students.template');
+        Route::post('/students/import', [StudentController::class, 'importTemplateExcel'])
+            ->name('students.import');
 
-    Route::resource('/teachers', TeacherController::class);
-    Route::post('/teachers/template', [TeacherController::class, 'downloadTemplateExcel'])
-        ->name('teachers.template');
-    Route::post('/teachers/import', [TeacherController::class, 'importTemplateExcel'])
-        ->name('teachers.import');
+        Route::resource('/teachers', TeacherController::class);
+        Route::post('/teachers/template', [TeacherController::class, 'downloadTemplateExcel'])
+            ->name('teachers.template');
+        Route::post('/teachers/import', [TeacherController::class, 'importTemplateExcel'])
+            ->name('teachers.import');
 
-    Route::resource('/classes', ClassController::class);
-    Route::post('/classes/template', [ClassController::class, 'downloadTemplateExcel'])
-        ->name('classes.template');
-    Route::post('/classes/import', [ClassController::class, 'importTemplateExcel'])
-        ->name('classes.import');
-    Route::post('/classes/pindah-kelas', [ClassController::class, 'pindahKelasSiswa'])
-        ->name('classes.pindah-kelas');
+        Route::resource('/classes', ClassController::class);
+        Route::post('/classes/template', [ClassController::class, 'downloadTemplateExcel'])
+            ->name('classes.template');
+        Route::post('/classes/import', [ClassController::class, 'importTemplateExcel'])
+            ->name('classes.import');
+        Route::post('/classes/pindah-kelas', [ClassController::class, 'pindahKelasSiswa'])
+            ->name('classes.pindah-kelas');
 
 
-    Route::resource('/parents', ParentController::class);
-    Route::post('/parents/template', [ParentController::class, 'downloadTemplateExcel'])
-        ->name('parents.template');
-    Route::post('/parents/import', [ParentController::class, 'importTemplateExcel'])
-        ->name('parents.import');
+        Route::resource('/parents', ParentController::class);
+        Route::post('/parents/template', [ParentController::class, 'downloadTemplateExcel'])
+            ->name('parents.template');
+        Route::post('/parents/import', [ParentController::class, 'importTemplateExcel'])
+            ->name('parents.import');
 
-    Route::resource('/offense-categories', OffenseCategoryController::class);
+        Route::resource('/offense-categories', OffenseCategoryController::class);
 
-    Route::resource('/tindakans', TindakanController::class);
+        Route::resource('/tindakans', TindakanController::class);
 
-    Route::resource('/users', UserController::class);
-    Route::post('/users/synchronize', [UserController::class, 'synchronizeUserAccountForTeacherStudentParent'])
-        ->name('users.synchronize');
+        Route::resource('/users', UserController::class);
+        Route::post('/users/synchronize', [UserController::class, 'synchronizeUserAccountForTeacherStudentParent'])
+            ->name('users.synchronize');
+    });
 
     Route::delete('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 });

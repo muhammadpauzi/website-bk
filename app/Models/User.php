@@ -66,6 +66,26 @@ class User extends Authenticatable
             });
     }
 
+    public function isSuperadmin()
+    {
+        return $this->role === self::$SUPERADMIN;
+    }
+
+    public function isTeacher()
+    {
+        return $this->role === self::$TEACHER;
+    }
+
+    public function isStudent()
+    {
+        return $this->role === self::$STUDENT;
+    }
+
+    public function isParent()
+    {
+        return $this->role === self::$PARENT;
+    }
+
     public function scopeWithoutMe(Builder $query)
     {
         $query->whereNot('id', auth()->id());
