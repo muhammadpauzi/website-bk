@@ -47,6 +47,10 @@
             </li>
         </ul>
     </li>
+    <li class="nav-item">
+        <a class="nav-link {{ request()->routeIs('student-offenses.index') ? 'active fw-bold' :'' }}"
+            aria-current="page" href="{{ route('student-offenses.index') }}">Pelanggaran Siswa</a>
+    </li>
     {{-- <li class="nav-item">
         <a class="nav-link" href="#">Notifications</a>
     </li>

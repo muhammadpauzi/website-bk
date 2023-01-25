@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\OffenseCategoryController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\StudentOffenseController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\TindakanController;
 use App\Http\Controllers\UserController;
@@ -50,7 +51,6 @@ Route::middleware('auth')->group(function () {
         Route::post('/classes/pindah-kelas', [ClassController::class, 'pindahKelasSiswa'])
             ->name('classes.pindah-kelas');
 
-
         Route::resource('/parents', ParentController::class);
         Route::post('/parents/template', [ParentController::class, 'downloadTemplateExcel'])
             ->name('parents.template');
@@ -60,6 +60,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('/offense-categories', OffenseCategoryController::class);
 
         Route::resource('/tindakans', TindakanController::class);
+
+        Route::resource('/student-offenses', StudentOffenseController::class);
 
         Route::resource('/users', UserController::class);
         Route::post('/users/synchronize', [UserController::class, 'synchronizeUserAccountForTeacherStudentParent'])

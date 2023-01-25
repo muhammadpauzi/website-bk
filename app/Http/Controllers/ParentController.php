@@ -146,7 +146,7 @@ class ParentController extends Controller
 
     public function downloadTemplateExcel()
     {
-        return Excel::download(new ParentsTemplateExport, 'EMPLATE_KELAS.xlsx');
+        return Excel::download(new ParentsTemplateExport, 'TEMPLATE_KELAS.xlsx');
     }
 
     public function importTemplateExcel(Request $request)
